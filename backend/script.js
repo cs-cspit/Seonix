@@ -1,0 +1,3 @@
+// take input as a string and check given string is palindrome or not.
+console.log("Jaini");
+// Write your code here...
