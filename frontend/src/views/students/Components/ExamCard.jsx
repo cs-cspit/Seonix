@@ -36,10 +36,10 @@ export default function ExamCard({ exam }) {
         boxShadow: '0 4px 15px rgba(140, 74, 242, 0.3)',
         transition: 'transform 0.3s ease',
         '&:hover': {
-          transform: isTeacher ? 'none' : 'translateY(-8px)',
+          transform: isTeacher ? 'none' : 'translateY(-6px)', // slightly less translate on hover
           boxShadow: isTeacher
             ? '0 4px 15px rgba(140, 74, 242, 0.3)'
-            : '0 6px 25px rgba(140, 74, 242, 0.5)',
+            : '0 6px 20px rgba(140, 74, 242, 0.5)',
         },
       }}
       onClick={handleCardClick}
@@ -50,13 +50,13 @@ export default function ExamCard({ exam }) {
         image={imgUrl}
         alt={examName}
         sx={{
-          height: { xs: 125, sm: 168, md: 196 },
+          height: { xs: 90, sm: 120, md: 140 }, // reduced height here
           width: '100%',
           objectFit: 'cover',
         }}
       />
 
-      {/* Text & actions positioned over image without overlay */}
+      {/* Text & actions positioned over image */}
       <Box
         sx={{
           position: 'absolute',
@@ -64,25 +64,24 @@ export default function ExamCard({ exam }) {
           left: 0,
           right: 0,
           bottom: 0,
-          p: 2,
+          p: 1.5,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           color: '#fff',
-          // Add subtle shadow for extra contrast if needed:
-          textShadow: '0 2px 8px rgba(0,0,0,0.5)',
-          pointerEvents: 'none', // allows onClick to trigger on Card
+          textShadow: '0 1px 5px rgba(0,0,0,0.6)',
+          pointerEvents: 'none', // so card click is enabled
         }}
       >
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ pointerEvents: 'auto' }}>
           <Typography
-            variant="h4" // Larger font for exam name
+            variant="h5" // smaller variant for exam name
             component="div"
             sx={{
-              fontWeight: 800,
-              letterSpacing: 0.5,
-              fontSize: { xs: '1rem', sm: '1.3rem', md: '1.7rem' },
-              lineHeight: 1.2,
+              fontWeight: 700,
+              letterSpacing: 0.4,
+              fontSize: { xs: '1.2rem', sm: '1.6rem', md: '1.9rem' }, // smaller and responsive font sizes
+              lineHeight: 1.1,
               maxWidth: { xs: '70%', sm: '75%', md: '80%' },
               overflowWrap: 'break-word',
             }}
@@ -94,7 +93,7 @@ export default function ExamCard({ exam }) {
               aria-label="delete"
               size="small"
               sx={{ color: 'white', pointerEvents: 'auto' }}
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 // Add your delete logic here
               }}
@@ -106,18 +105,23 @@ export default function ExamCard({ exam }) {
 
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ pointerEvents: 'auto' }}>
           <Box>
-            <Typography variant="body2" sx={{ fontWeight: 700 }}>
+            <Typography variant="body2" sx={{ fontWeight: 600, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' } }}>
               MCQ
             </Typography>
-            <Typography variant="subtitle2">{totalQuestions} ques</Typography>
-            <Typography variant="subtitle2" sx={{ opacity: 0.85 }}>
+            <Typography variant="subtitle2" sx={{ fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.95rem' } }}>
+              {totalQuestions} ques
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              sx={{ opacity: 0.85, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' } }}
+            >
               Duration: {duration} min
             </Typography>
           </Box>
           <Box
             sx={{
               fontWeight: 'bold',
-              fontSize: { xs: '1.3rem', sm: '1.7rem' },
+              fontSize: { xs: '1rem', sm: '1.3rem', md: '1.5rem' },
               lineHeight: 1,
               userSelect: 'none',
               color: '#fff',
